@@ -3,17 +3,22 @@ import useAuth from "../../Hooks/useAuth";
 import './Header.css'
 const Header = () => {
   const {user,logOut}= useAuth()
-  console.log(user);
   const navitems =<>
    <li><Link to='/'>Home</Link></li>
-   <li><a>Item 3</a></li>
+   <li><Link to='/instructors'>Instructors</Link></li>
   </>
     return (
         <div>
-          <div className="md:w-11/12 mx-auto max-w-screen-xl">
+          <div className="md:w-11/12 mx-auto max-w-screen-xl flex justify-between">
+            <div>
+            <Link to='/dashboard'>DashBoard</Link>
+
+            </div>
+            <div>
             {
-             !user?<NavLink activeClassName="active"  to='/user/login'>login</NavLink>:<button onClick={logOut}>LogOut</button>
+             !user?<NavLink   to='/user/login'>login</NavLink>:<button onClick={logOut}>LogOut</button>
             }
+            </div>
           </div>
           <hr className="border"/>
         <div className="navbar md:w-11/12 mx-auto max-w-screen-xl">

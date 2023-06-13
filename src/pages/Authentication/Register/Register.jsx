@@ -23,11 +23,12 @@ const Register = () => {
         .then(res=>{
           updateProfile(res.user,{displayName:data.name,photoURL:imgurl})
           .then()
-          console.log(res.user);
+          const user ={name:data.name,email:data.email,image:imgurl,}
+          axios.post('http://localhost:5000/users',user)
+          .then(res=>console.log(res.data))
          })
       }
     })
-    console.log(data,data.img[0],formdata);
   }
   console.log(errors);
   useEffect(() => {
