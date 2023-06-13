@@ -2,8 +2,8 @@ import './swiper.css'
 import { MdLocationSearching } from "react-icons/md";
 const Banner = () => {
   return (
-    <div className="h-[1200px] md:h-[730px] bg-gradient-to-r from-black to-[#363636] ">
-      <div className="md:grid grid-cols-3 w-11/12 mx-auto max-w-screen-xl">
+    <div className="h-[1200px] lg:h-[730px] bg-gradient-to-r from-black to-[#363636] ">
+      <div className="lg:grid grid-cols-3 w-11/12 mx-auto max-w-screen-xl">
         <div className="pt-16 lg:col-span-2 flex flex-col gap-y-10 justify-center	text-white">
           <h2 className="text-slate-300 uppercase">Unlock Your Full Potential</h2>
           <h1 className="text-6xl font-semibold">Discover the Joy <br />Unleash Your Inner Melody</h1>
