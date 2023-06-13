@@ -1,8 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
 import { AiFillFolderAdd, AiFillDatabase } from "react-icons/ai";
 import useInstructor from "../Hooks/useInstructor";
+import Instructors from "../pages/Instructors/Instructors/Instructors";
 const DashBoard = () => {
     const [isInstructor] = useInstructor()
+    console.log(isInstructor);
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
