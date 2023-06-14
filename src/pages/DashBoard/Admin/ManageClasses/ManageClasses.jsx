@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useClasses from "../../../../Hooks/useClasses";
-import {  useState } from "react";
+import { useState } from "react";
 
 
 const ManageClasses = () => {
@@ -10,11 +10,21 @@ const ManageClasses = () => {
     const [feedback, setFeedback] = useState('');
     const handleFeedbackChange = (event) => {
         setFeedback(event.target.value);
-      };
+    };
     const addFeedback = (id) => {
-    console.log(feedback,id);
-     axiosSecure.patch(`/classes/feedback/${id}`,{feedback})
-     .then(res=>res.data)
+        console.log(feedback, id);
+        axiosSecure.patch(`/classes/feedback/${id}`, { feedback })
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `Feedback providede`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
     const approve = (id) => {
         axiosSecure.patch(`/classes/approve/${id}`)
@@ -61,7 +71,6 @@ const ManageClasses = () => {
                             <th>Price</th>
                             <th>Status</th>
                             <th>Actions</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -81,24 +90,22 @@ const ManageClasses = () => {
                                     <p>{cls.instructor_email}</p>
                                 </td>
                                 <td>{cls.seats}</td>
-                                <td>${cls.price}</td>1
+                                <td>${cls.price}</td>
                                 <td >{cls.status}</td>
                                 <td className="space-y-2">
                                     <p><button disabled={cls.status === 'approved' || cls.status === 'denied' ? true : false} onClick={() => { approve(cls._id) }} className="text-white bg-[#4cc66e] px-4 py-2 rounded-md w-20 disabled:bg-gray-300">Approve</button></p>
                                     <p><button disabled={cls.status === 'approved' || cls.status === 'denied' ? true : false} onClick={() => { deny(cls._id) }} className="text-white bg-[#c05151] px-4 py-2 rounded-md w-20  disabled:bg-gray-300">Deny</button></p>
-                                    <p className="bg-[#97a8a7] px-2 py-2 rounded-md w-20 mt-2"><label htmlFor={`my_modal_${idx}`}  className=" text-white ">Feedback</label></p>
+                                    <p className="bg-[#97a8a7] px-2 py-2 rounded-md w-20 mt-2"><label htmlFor={`my_modal_${idx}`} className=" text-white ">Feedback</label></p>
                                 </td>
-                               
-
                                 {/* Put this part before </body> tag */}
                                 <input type="checkbox" id={`my_modal_${idx}`} className="modal-toggle" />
                                 <div className="modal">
                                     <div className="modal-box bg-[#0c1a1f] text-white">
                                         <h3 className="font-bold text-lg">Hello!Admin</h3>
                                         <p className="py-4">Add a Feedback</p>
-                                        <textarea  onChange={handleFeedbackChange} placeholder="Add Feedback  here" className="w-full bg-transparent border border-green-500 rounded p-2" name="" id=""  rows="10"></textarea>
+                                        <textarea onChange={handleFeedbackChange} placeholder="Add Feedback  here" className="w-full bg-transparent border border-green-500 rounded p-2" name="" id="" rows="10"></textarea>
                                         <div className="modal-action">
-                                            <label onClick={()=>addFeedback(cls._id)} htmlFor={`my_modal_${idx}`} className="btn">Feedback</label>
+                                            <label onClick={() => addFeedback(cls._id)} htmlFor={`my_modal_${idx}`} className="btn">Feedback</label>
                                         </div>
                                     </div>
                                 </div>
@@ -108,8 +115,6 @@ const ManageClasses = () => {
                 </table>
 
                 {/* Open the modal using ID.showModal() method */}
-
-
             </div>
         </div>
     );
