@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import useInstructor from "../../../../Hooks/useInstructor";
+
 import useUsers from "../../../../Hooks/useUsers";
 import { BsCheck2Square } from "react-icons/bs";
 const ManageUsers = () => {
@@ -14,6 +14,21 @@ const ManageUsers = () => {
                     position: 'center',
                     icon: 'success',
                     title: `${name} is Admin Now`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                refetch()
+            }
+        })
+     }
+     const makeInstructor =(id,name)=>{
+        axiosSecure.patch(`/users/instructors/${id}`)
+        .then(res=>{
+            if(res.data.modifiedCount){
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: `${name} is instructor Now`,
                     showConfirmButton: false,
                     timer: 1500
                   })
@@ -55,7 +70,7 @@ const ManageUsers = () => {
                                 <p><button onClick={()=>{makeAdmin(user._id,user.name)}} disabled={user.role==='admin'?true:false} className="text-2xl font-bold px-4 py-2 rounded-md w-20 text-green-500 disabled:text-gray-300"><BsCheck2Square/></button></p>
                                 </td>
                                 <td className="space-y-2">
-                                    <p><button disabled={user.role==='instructor'?true:false} className="text-2xl font-bold px-4 py-2 rounded-md w-20 text-green-500 disabled:text-gray-300"><BsCheck2Square/></button></p>
+                                    <p><button onClick={()=>{makeInstructor(user._id,user.name)}} disabled={user.role==='instructor'?true:false} className="text-2xl font-bold px-4 py-2 rounded-md w-20 text-green-500 disabled:text-gray-300"><BsCheck2Square/></button></p>
                                 </td>
 
 

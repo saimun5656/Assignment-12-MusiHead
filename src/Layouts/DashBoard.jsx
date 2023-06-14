@@ -1,10 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
 import { AiFillFolderAdd, AiFillDatabase } from "react-icons/ai";
 import useInstructor from "../Hooks/useInstructor";
-import Instructors from "../pages/Instructors/Instructors/Instructors";
+import useAdmin from "../Hooks/useAdmin";
 const DashBoard = () => {
     const [isInstructor] = useInstructor()
-    console.log(isInstructor);
+    const [isAdmin] = useAdmin()
+    console.log(isAdmin);
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -14,8 +15,6 @@ const DashBoard = () => {
                     {/* Page content here */}
                     <Outlet></Outlet>
                 </div>
-
-
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -24,14 +23,18 @@ const DashBoard = () => {
                     <li>
                         <span><img className="w-10 me-1 inline" src="https://i.ibb.co/wCKTC4F/image-removebg-preview.png" alt="" /> <Link to={'/'} className="normal-case font-semibold text-2xl">Musi<span className="text-green-600">Head</span></Link> </span>
                     </li>
-                    {isInstructor?
-                    <>
-                    <li><Link to='/dashboard/instructor/addclasses'><AiFillFolderAdd className="text-3xl me-3" /> Add Classes</Link></li>
-                    <li><Link to='/dashboard/instructor/my-classes'><AiFillDatabase className="text-3xl me-3" /> My Classes</Link></li>
-                    </>:''
+                    {isInstructor ?
+                        <>
+                            <li><Link to='/dashboard/instructor/addclasses'><AiFillFolderAdd className="text-3xl me-3" /> Add Classes</Link></li>
+                            <li><Link to='/dashboard/instructor/my-classes'><AiFillDatabase className="text-3xl me-3" /> My Classes</Link></li>
+                        </> : ''
                     }
-                    <li><Link to='/dashboard/admin/manage-classes'><AiFillDatabase className="text-3xl me-3" /> Manage Classes</Link></li>
-                    <li><Link to='/dashboard/admin/manage-users'><AiFillDatabase className="text-3xl me-3" /> Manage Users</Link></li>
+                    {
+                        isAdmin ? <>
+                            <li><Link to='/dashboard/admin/manage-classes'><AiFillDatabase className="text-3xl me-3" /> Manage Classes</Link></li>
+                            <li><Link to='/dashboard/admin/manage-users'><AiFillDatabase className="text-3xl me-3" /> Manage Users</Link></li>
+                        </> : ''
+                    }
                 </ul>
 
             </div>
