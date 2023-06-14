@@ -1,8 +1,26 @@
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useClasses from "../../../../Hooks/useClasses";
 
 const ManageClasses = () => {
-    const [classes] = useClasses()
+    const [classes, refetch] = useClasses()
+    const axiosSecure = useAxiosSecure()
     console.log(classes);
+    const approve = (id) => {
+        axiosSecure.patch(`/classes/approve/${id}`)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `this class is Approved`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    refetch()
+                }
+            })
+    }
     return (
         <div>
             <div className="overflow-x-auto w-full">
@@ -15,6 +33,7 @@ const ManageClasses = () => {
                             <th>class </th>
                             <th>details</th>
                             <th>Seats</th>
+                            <th>Price</th>
                             <th>Status</th>
                             <th>Actions</th>
 
@@ -37,9 +56,10 @@ const ManageClasses = () => {
                                     <p>{cls.instructor_email}</p>
                                 </td>
                                 <td>{cls.seats}</td>
+                                <td>${cls.price}</td>
                                 <td >{cls.status}</td>
                                 <td className="space-y-2">
-                                    <p><button className="text-white bg-[#4cc66e] px-4 py-2 rounded-md w-20">Approve</button></p>
+                                    <p><button onClick={()=>{approve(cls._id)}} className="text-white bg-[#4cc66e] px-4 py-2 rounded-md w-20">Approve</button></p>
                                     <p><button className="text-white bg-[#c05151] px-4 py-2 rounded-md w-20">Deny</button></p>
                                     <p><button className="text-white bg-[#b4bbb4] px-4 py-2 rounded-md w-20">Feedback</button></p>
                                 </td>
