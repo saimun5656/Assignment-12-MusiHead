@@ -39,7 +39,7 @@ const MyClasses = () => {
                                 <td>{cls.class_name}</td>
                                 <td>{cls.enrolled}</td>
                                 <td >{cls.status}</td>
-                                <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
+                                <td>{cls.feedback}</td>
                                 <td><button className="btn  text-xl border-none   text-black"><FaRegEdit /></button></td>
                           
                             </tr>)
