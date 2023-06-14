@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../../Hooks/useAuth";
 import axios from "axios";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddClasses = () => {
     const axiosSecure = useAxiosSecure()
@@ -19,6 +20,17 @@ const AddClasses = () => {
         const newclass = {instructor_name:user?.displayName,instructor_email:user?.email,class_name:data.class,image:imgurl,seats:parseInt(data.seats),price:price,enrolled:0,status:'pending'}
         console.log(newclass);
         axiosSecure.post('/classes',newclass)
+        .then(res=>{
+            if(res.data.insertedId){
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: `new class is Added`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        })
         }
      })
     }

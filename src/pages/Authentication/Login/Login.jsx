@@ -3,10 +3,13 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
     const [error,setError]= useState()
     const {emailLogin}= useAuth()
+    const loaction = useLocation();
+    const from = loaction.state?.from||'/';
+    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors }, trigger , reset} = useForm()
     useEffect(() => {
         trigger("email");
@@ -21,6 +24,7 @@ const Login = () => {
         .then(res=>{
             reset()
             console.log(res.user)
+            navigate(from)
         })
         .catch(err=>setError(`* ${err.message}`))
       }

@@ -76,7 +76,7 @@ const ManageClasses = () => {
                                 <td className="space-y-2">
                                     <p><button disabled={cls.status==='approved'||cls.status==='denied'?true:false} onClick={()=>{approve(cls._id)}} className="text-white bg-[#4cc66e] px-4 py-2 rounded-md w-20 disabled:bg-gray-300">Approve</button></p>
                                     <p><button disabled={cls.status==='approved'||cls.status==='denied'?true:false} onClick={()=>{deny(cls._id)}} className="text-white bg-[#c05151] px-4 py-2 rounded-md w-20  disabled:bg-gray-300">Deny</button></p>
-                                    <p><button className="text-white bg-[#8c918c] px-4 py-2 rounded-md w-20">Feedback</button></p>
+                                    <p><button className="text-white bg-[#97a8a7] px-4 py-2 rounded-md w-20">Feedback</button></p>
                                 </td>
 
 

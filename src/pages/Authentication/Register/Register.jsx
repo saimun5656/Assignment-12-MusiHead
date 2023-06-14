@@ -8,6 +8,7 @@ import axios from "axios";
 import useAuth from "../../../Hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 const Register = () => { 
  const {signUpWithEmail} = useAuth()
   const { register, handleSubmit, formState: { errors }, trigger } = useForm()
@@ -25,7 +26,17 @@ const Register = () => {
           .then()
           const user ={name:data.name,email:data.email,image:imgurl,}
           axios.post('http://localhost:5000/users',user)
-          .then(res=>console.log(res.data))
+          .then(res=>{
+            if(res.data.insertedId){
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: `User created successfully`,
+                showConfirmButton: false,
+                timer: 1500
+            })
+            }
+          })
          })
       }
     })
