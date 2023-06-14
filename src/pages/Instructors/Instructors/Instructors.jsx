@@ -7,7 +7,7 @@ const Instructors = () => {
     console.log(instructors);
     return (
         <div>
-            <PageBanner></PageBanner>
+            <PageBanner img='https://i.ibb.co/VD2cvqg/Webinar-pana.png' tittle='INSTRUCTORS'></PageBanner>
            <div className='flex flex-col gap-8 md:grid md:grid-cols-2 xl:grid-cols-3 w-11/12 mx-auto mt-16 justify-center items-center'>
            {
                 instructors?.map(ins => <InstructorCard key={ins._id} instructor={ins}></InstructorCard>)

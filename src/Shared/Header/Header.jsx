@@ -6,13 +6,13 @@ const Header = () => {
   const navitems =<>
    <li><Link to='/'>Home</Link></li>
    <li><Link to='/instructors'>Instructors</Link></li>
+   <li><Link to='/classes'>Classes</Link></li>
   </>
     return (
         <div>
           <div className="md:w-11/12 mx-auto max-w-screen-xl flex justify-between">
             <div>
             <Link to='/dashboard'>DashBoard</Link>
-
             </div>
             <div>
             {
