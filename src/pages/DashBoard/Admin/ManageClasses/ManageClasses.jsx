@@ -21,6 +21,21 @@ const ManageClasses = () => {
                 }
             })
     }
+    const deny = (id) => {
+        axiosSecure.patch(`/classes/deny/${id}`)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `this class is Denied`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    refetch()
+                }
+            })
+    }
     return (
         <div>
             <div className="overflow-x-auto w-full">
@@ -59,9 +74,9 @@ const ManageClasses = () => {
                                 <td>${cls.price}</td>
                                 <td >{cls.status}</td>
                                 <td className="space-y-2">
-                                    <p><button onClick={()=>{approve(cls._id)}} className="text-white bg-[#4cc66e] px-4 py-2 rounded-md w-20">Approve</button></p>
-                                    <p><button className="text-white bg-[#c05151] px-4 py-2 rounded-md w-20">Deny</button></p>
-                                    <p><button className="text-white bg-[#b4bbb4] px-4 py-2 rounded-md w-20">Feedback</button></p>
+                                    <p><button disabled={cls.status==='approved'||cls.status==='denied'?true:false} onClick={()=>{approve(cls._id)}} className="text-white bg-[#4cc66e] px-4 py-2 rounded-md w-20 disabled:bg-gray-300">Approve</button></p>
+                                    <p><button disabled={cls.status==='approved'||cls.status==='denied'?true:false} onClick={()=>{deny(cls._id)}} className="text-white bg-[#c05151] px-4 py-2 rounded-md w-20  disabled:bg-gray-300">Deny</button></p>
+                                    <p><button className="text-white bg-[#8c918c] px-4 py-2 rounded-md w-20">Feedback</button></p>
                                 </td>
 
 
