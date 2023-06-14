@@ -1,15 +1,20 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useClasses from "../../../../Hooks/useClasses";
+import {  useState } from "react";
 
 
 const ManageClasses = () => {
     const [classes, refetch] = useClasses()
     const axiosSecure = useAxiosSecure()
-   
+    const [feedback, setFeedback] = useState('');
+    const handleFeedbackChange = (event) => {
+        setFeedback(event.target.value);
+      };
     const addFeedback = (id) => {
-      console.log(id);
-      axiosSecure.post()
+    console.log(feedback,id);
+     axiosSecure.patch(`/classes/feedback/${id}`,{feedback})
+     .then(res=>res.data)
     }
     const approve = (id) => {
         axiosSecure.patch(`/classes/approve/${id}`)
@@ -91,7 +96,7 @@ const ManageClasses = () => {
                                     <div className="modal-box bg-[#0c1a1f] text-white">
                                         <h3 className="font-bold text-lg">Hello!Admin</h3>
                                         <p className="py-4">Add a Feedback</p>
-                                        <textarea placeholder="Add Feedback  here" className="w-full bg-transparent border border-green-500 rounded p-2" name="" id=""  rows="10"></textarea>
+                                        <textarea  onChange={handleFeedbackChange} placeholder="Add Feedback  here" className="w-full bg-transparent border border-green-500 rounded p-2" name="" id=""  rows="10"></textarea>
                                         <div className="modal-action">
                                             <label onClick={()=>addFeedback(cls._id)} htmlFor={`my_modal_${idx}`} className="btn">Feedback</label>
                                         </div>
