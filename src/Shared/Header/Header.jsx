@@ -1,8 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import './Header.css'
+import useInstructor from "../../Hooks/useInstructor";
+import useAdmin from "../../Hooks/useAdmin";
+import { RiDashboardFill } from "react-icons/ri";
+import useIsStudent from "../../Hooks/useIsStudent";
 const Header = () => {
-  const {user,logOut}= useAuth()
+  const {user,logOut}= useAuth();
+  console.log(user);
+  const[isInstructor]=useInstructor();
+  const [isAdmin]= useAdmin();
+  const [isStudent]= useIsStudent();
   const navitems =<>
    <li><Link to='/'>Home</Link></li>
    <li><Link to='/instructors'>Instructors</Link></li>
@@ -10,9 +18,17 @@ const Header = () => {
   </>
     return (
         <div>
-          <div className="md:w-11/12 mx-auto max-w-screen-xl flex justify-between">
+          <div className="w-11/12 mx-auto max-w-screen-xl flex justify-between my-2">
             <div>
-            <Link to='/dashboard'>DashBoard</Link>
+            {
+              isInstructor?<Link to='/dashboard/instructor/my-classes'><RiDashboardFill className="inline"/> DashBoard</Link>:''
+            }
+            {
+              isAdmin?<Link className="text-xl flex items-center gap-2" to='/dashboard/admin/manage-users'><RiDashboardFill className="text-2xl text-green-600"/> DashBoard</Link>:''
+            }
+            {
+              isStudent?<Link className="text-xl flex items-center gap-2" to='/dashboard/student/selected-classes'><RiDashboardFill className="text-2xl "/> DashBoard</Link>:''
+            }
             </div>
             <div>
             {
@@ -40,7 +56,7 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+    <img className="w-12 h-12 me-1 md:-me-2 rounded-full" src={user?user.photoURL:''} alt="" />
   </div>
         </div>
         </div>

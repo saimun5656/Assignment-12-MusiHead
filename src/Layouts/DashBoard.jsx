@@ -7,7 +7,7 @@ const DashBoard = () => {
     const [isInstructor] = useInstructor()
     const [isAdmin] = useAdmin()
     const [isStudent]= useIsStudent()
-    console.log(isAdmin);
+    console.log(isStudent, isAdmin)
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

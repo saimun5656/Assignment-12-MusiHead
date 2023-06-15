@@ -13,6 +13,7 @@ import ManageUsers from "../pages/DashBoard/Admin/ManageUsers/ManageUsers";
 import Classes from "../pages/Classes/Classes/Classes";
 import SelectedClasses from "../pages/DashBoard/Student/SelectedClasses/SelectedClasses";
 import Payment from "../pages/DashBoard/Student/Payment/Payment";
+import AdminRoutes from "./AdminRoutes";
 
 const router = createBrowserRouter([
     {
@@ -56,11 +57,11 @@ const router = createBrowserRouter([
             },
             {
                 path:'admin/manage-classes',
-                element:<ManageClasses></ManageClasses>
+                element:<AdminRoutes><ManageClasses></ManageClasses></AdminRoutes>
             },
             {
                 path:'admin/manage-users',
-                element:<ManageUsers></ManageUsers>
+                element:<AdminRoutes><ManageUsers></ManageUsers></AdminRoutes>
             },
             {
                 path:'student/selected-classes',
