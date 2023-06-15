@@ -38,7 +38,7 @@ const SelectedClasses = () => {
                                 <td>{cls.class_name}</td>
                                 <td>{cls.enrolled}</td>
                                 <td >{cls.price}</td>
-                                <td className="text-2xl"><Link to='/dashboard/student/payment/'><FaMoneyCheckAlt /></Link></td>
+                                <td className="text-2xl"><Link to={`/dashboard/student/payment/${cls._id}`}><FaMoneyCheckAlt /></Link></td>
                                 <td className="text-2xl"><FaTrashAlt /></td>
                             </tr>)
                         }
