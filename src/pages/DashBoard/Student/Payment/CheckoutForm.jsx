@@ -4,9 +4,20 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 
-const CheckoutForm = ({ amount, id }) => {
+const CheckoutForm = ({ amount, id, mainClassId }) => {
+    const { data: mainClass } = useQuery(['mainClass', mainClassId], async () => {
+        const res = await axiosSecure.get(`/classes/filter/${mainClassId}`)
+        return res.data
+    })
+    const seats =mainClass?.seats;
+    const enrolled = mainClass?.enrolled;
+    const updatedSeats =seats-1;
+    const updatedEnrolled =enrolled+1 
+    console.log('selectecd',id);
+    console.log('main',mainClassId);
     const { user } = useAuth()
     const [error, setError] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -64,6 +75,10 @@ const CheckoutForm = ({ amount, id }) => {
             },
         );
         if (paymentIntent) {
+            axiosSecure.delete(`/classes/remove-selected/${id}`)
+            .then(res=>console.log(res.data))
+            axiosSecure.patch(`/classes/add-enrollcount/${mainClassId}`,{updatedSeats,updatedEnrolled})
+            .then(res=>console.log(res.data))
             Swal.fire({
                 position: 'center',
                 icon: 'success',

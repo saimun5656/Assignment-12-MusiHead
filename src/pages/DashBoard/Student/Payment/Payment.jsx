@@ -7,17 +7,19 @@ import { useQuery } from "@tanstack/react-query";
 const Payment = () => {
     const axiosSecure = useAxiosSecure()
     const {id}= useParams();
-    const { data: selectedClass } = useQuery(['class', id], async () => {
-        const res = await axiosSecure.get(`/classes/filterbyid/${id}`)
+    const { data: selectedClass ,isLoading} = useQuery(['class', id], async () => {
+        const res = await axiosSecure.get(`/classes/selected/filterbyid/${id}`)
         return res.data
-
     })
+    //console.log(selectedClass);
     const amount = selectedClass?.price;
+    const mainClassId = selectedClass?.class_id
     const stripePromise = loadStripe(import.meta.env.VITE_stripe_pk);
     return (
         <div className="min-h-screen py-20 w-11/12 mx-auto">
            <Elements stripe={stripePromise}>
-            <CheckoutForm amount={amount} id={id}></CheckoutForm>
+            {isLoading?<>Loading</>:<CheckoutForm amount={amount} id={id} mainClassId={mainClassId}></CheckoutForm>
+            }
            </Elements>
         </div>
     );
