@@ -2,9 +2,11 @@ import { Link, Outlet } from "react-router-dom";
 import { AiFillFolderAdd, AiFillDatabase } from "react-icons/ai";
 import useInstructor from "../Hooks/useInstructor";
 import useAdmin from "../Hooks/useAdmin";
+import useIsStudent from "../Hooks/useIsStudent";
 const DashBoard = () => {
     const [isInstructor] = useInstructor()
     const [isAdmin] = useAdmin()
+    const [isStudent]= useIsStudent()
     console.log(isAdmin);
     return (
         <div className="drawer lg:drawer-open">
@@ -34,6 +36,12 @@ const DashBoard = () => {
                             <li><Link to='/dashboard/admin/manage-classes'><AiFillDatabase className="text-3xl me-3" /> Manage Classes</Link></li>
                             <li><Link to='/dashboard/admin/manage-users'><AiFillDatabase className="text-3xl me-3" /> Manage Users</Link></li>
                         </> : ''
+                    }
+                    {
+                        isStudent?<>
+                         <li><Link to='/dashboard/student/selected-classes'><AiFillDatabase className="text-3xl me-3" /> Selected Classes</Link></li>
+                            <li><Link to='/dashboard/student/enrolled-classes'><AiFillDatabase className="text-3xl me-3" />Enrolled Classes</Link></li>
+                        </>:''
                     }
                 </ul>
 

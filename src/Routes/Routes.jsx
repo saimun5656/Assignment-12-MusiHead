@@ -11,11 +11,14 @@ import PrivateRoute from "./PrivateRoute";
 import ManageClasses from "../pages/DashBoard/Admin/ManageClasses/ManageClasses";
 import ManageUsers from "../pages/DashBoard/Admin/ManageUsers/ManageUsers";
 import Classes from "../pages/Classes/Classes/Classes";
+import SelectedClasses from "../pages/DashBoard/Student/SelectedClasses/SelectedClasses";
+import Payment from "../pages/DashBoard/Student/Payment/Payment";
 
 const router = createBrowserRouter([
     {
         path:'/',
         element:<Main></Main>,
+        errorElement:<>404 not found</>,
         children:[
             {
                 path:'/',
@@ -58,6 +61,14 @@ const router = createBrowserRouter([
             {
                 path:'admin/manage-users',
                 element:<ManageUsers></ManageUsers>
+            },
+            {
+                path:'student/selected-classes',
+                element:<SelectedClasses></SelectedClasses>
+            },
+            {
+                path:'student/payment',
+                element:<Payment></Payment>
             },
         ]
     }

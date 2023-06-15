@@ -5,15 +5,23 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAdmin from "../../../Hooks/useAdmin";
 import useInstructor from "../../../Hooks/useInstructor";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ClassesCard = ({cls}) => {
+    const navigate = useNavigate()
+    const {pathname} = useLocation()
+   console.log(pathname);
     const[isAdmin] = useAdmin()
     const[isInstructor] = useInstructor()
     console.log(isAdmin||isInstructor);
     const{user}=useAuth()
     const axiosSecure = useAxiosSecure()
-    const selecetedClass ={class_id:cls._id,class_name:cls.class_name,email:user?.email}
+    const selecetedClass ={class_id:cls._id,class_name:cls.class_name,price:cls.price,email:user?.email}
     const selectClass=()=>{
+        if(!user){
+            navigate('/user/login',{state:{from:pathname}})
+            return;
+        }
          axiosSecure.post('/classes/selected',selecetedClass)
          .then(res=>{
             if(res.data.insertedId){
