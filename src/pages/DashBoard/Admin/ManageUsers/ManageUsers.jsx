@@ -57,7 +57,7 @@ const ManageUsers = () => {
                         {
                             users?.map((user, idx) => <tr key={user._id}>
                                 <th>{idx + 1}</th>
-                                <th><img className="w-20 h-16" src={user.image} alt="" /></th>
+                                <th><img className="w-16 h-16 rounded-md" src={user.image} alt="" /></th>
                                 <td>
                                     <p>{user.name}</p>
                                 </td>

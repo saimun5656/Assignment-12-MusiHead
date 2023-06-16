@@ -1,5 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
 import { AiFillFolderAdd, AiFillDatabase } from "react-icons/ai";
+import { BiSelectMultiple } from "react-icons/bi";
+import { AiOutlineFileDone } from "react-icons/ai";
+import { MdManageAccounts } from "react-icons/md";
+import { FaListAlt } from "react-icons/fa";
 import useInstructor from "../Hooks/useInstructor";
 import useAdmin from "../Hooks/useAdmin";
 import useIsStudent from "../Hooks/useIsStudent";
@@ -33,14 +37,14 @@ const DashBoard = () => {
                     }
                     {
                         isAdmin ? <>
-                            <li><Link to='/dashboard/admin/manage-classes'><AiFillDatabase className="text-3xl me-3" /> Manage Classes</Link></li>
-                            <li><Link to='/dashboard/admin/manage-users'><AiFillDatabase className="text-3xl me-3" /> Manage Users</Link></li>
+                            <li><Link to='/dashboard/admin/manage-classes'><FaListAlt className="text-3xl me-3" /> Manage Classes</Link></li>
+                            <li><Link to='/dashboard/admin/manage-users'><MdManageAccounts className="text-3xl me-3" /> Manage Users</Link></li>
                         </> : ''
                     }
                     {
                         isStudent?<>
-                         <li><Link to='/dashboard/student/selected-classes'><AiFillDatabase className="text-3xl me-3" /> Selected Classes</Link></li>
-                            <li><Link to='/dashboard/student/enrolled-classes'><AiFillDatabase className="text-3xl me-3" />Enrolled Classes</Link></li>
+                         <li><Link to='/dashboard/student/selected-classes'><BiSelectMultiple className="text-3xl me-3" /> Selected Classes</Link></li>
+                            <li><Link to='/dashboard/student/enrolled-classes'><AiOutlineFileDone className="text-3xl me-3" />Enrolled Classes</Link></li>
                         </>:''
                     }
                 </ul>

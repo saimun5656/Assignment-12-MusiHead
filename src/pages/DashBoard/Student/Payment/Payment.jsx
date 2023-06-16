@@ -18,7 +18,7 @@ const Payment = () => {
     return (
         <div className="min-h-screen py-20 w-11/12 mx-auto">
            <Elements stripe={stripePromise}>
-            {isLoading?<>Loading</>:<CheckoutForm amount={amount} id={id} mainClassId={mainClassId}></CheckoutForm>
+            {isLoading?<>Loading</>:<CheckoutForm amount={amount} instructor_name={selectedClass.instructor_name} class_name={selectedClass.class_name} id={id} mainClassId={mainClassId}></CheckoutForm>
             }
            </Elements>
         </div>

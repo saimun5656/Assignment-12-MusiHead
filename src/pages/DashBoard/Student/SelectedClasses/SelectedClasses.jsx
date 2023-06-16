@@ -24,7 +24,7 @@ const SelectedClasses = () => {
                         <tr  >
                             <th></th>
                             <th>class Name</th>
-                            <th>seats remaing</th>
+                            <th>Instructor Name</th>
                             <th>price</th>
                             <th>Pay</th>
                             <th>Delete</th>
@@ -36,8 +36,8 @@ const SelectedClasses = () => {
                             classes?.map((cls, idx) => <tr key={cls._id}>
                                 <th>{idx + 1}</th>
                                 <td>{cls.class_name}</td>
-                                <td>{cls.enrolled}</td>
-                                <td >{cls.price}</td>
+                                <td>{cls.instructor_name}</td>
+                                <td >${cls.price}</td>
                                 <td className="text-2xl"><Link to={`/dashboard/student/payment/${cls._id}`}><FaMoneyCheckAlt /></Link></td>
                                 <td className="text-2xl"><FaTrashAlt /></td>
                             </tr>)

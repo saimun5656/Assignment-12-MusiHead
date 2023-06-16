@@ -1,13 +1,14 @@
 import './swiper.css'
+import { Fade } from "react-awesome-reveal";
 import { MdLocationSearching } from "react-icons/md";
 const Banner = () => {
   return (
-    <div className="h-[1200px] lg:h-[730px] bg-gradient-to-r from-black to-[#363636] ">
+    <div className="h-[1220px] lg:h-[730px] bg-gradient-to-r from-black to-[#363636] ">
       <div className="lg:grid grid-cols-3 w-11/12 mx-auto max-w-screen-xl">
         <div className="pt-16 lg:col-span-2 flex flex-col gap-y-10 justify-center	text-white">
           <h2 className="text-slate-300 uppercase">Unlock Your Full Potential</h2>
           <h1 className="text-6xl font-semibold">Discover the Joy <br />Unleash Your Inner Melody</h1>
-          <h2 className='text-slate-300 uppercase'>Join Our Thriving Community and Experience Unwavering Support</h2>
+          <Fade delay={100} cascade damping={0.5} duration={4000}><h2 className='text-slate-300 uppercase'>Join Our Thriving Community and Experience Unwavering Support</h2></Fade>
           <div className='relative max-w-[440px]'>
             <input className='w-full  px-4 py-3 bg-transparent border border-[#1ab06a] rounded-sm' placeholder='Seacrch Courses' type="text" name="" id="" />
             <div className='rounded-sm absolute top-[2px] right-[2px] bg-white w-[45px] h-[45px] flex justify-center items-center'><MdLocationSearching className='text-green-600 text-2xl'></MdLocationSearching></div>
@@ -43,7 +44,7 @@ const Banner = () => {
             
           </div>
         </div>
-        <div className="mt-10 scrollable-div h-[500px] md:h-[690px] overflow-y-scroll grid grid-cols-2 gap-5 ">
+        <div className="mt-10 scrollable-div h-[470px] md:h-[690px] overflow-y-scroll grid grid-cols-2 gap-5 ">
           <div className="child"><img className="w-full h-full rounded-md" src="https://i.ibb.co/fthRkcS/joel-vogt-XAd-PSp-Lh-Hpg-unsplash.jpg " alt="" /></div>
           <div className="h-[160px]">        <img className="w-full h-full rounded-md" src="https://i.ibb.co/M8CjLP1/levi-ventura-zcz3rlfp-NPY-unsplash.jpg" alt="" /></div>
           <div className="child h-[160px]">        <img className="w-full h-full rounded-md" src="https://images.unsplash.com/photo-1602261192256-3a8503ae7343?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="" /></div>

@@ -5,19 +5,21 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 
-const CheckoutForm = ({ amount, id, mainClassId }) => {
+const CheckoutForm = ({ amount, id, mainClassId, class_name, instructor_name }) => {
+    const navigate = useNavigate()
     const { data: mainClass } = useQuery(['mainClass', mainClassId], async () => {
         const res = await axiosSecure.get(`/classes/filter/${mainClassId}`)
         return res.data
     })
-    const seats =mainClass?.seats;
+    const seats = mainClass?.seats;
     const enrolled = mainClass?.enrolled;
-    const updatedSeats =seats-1;
-    const updatedEnrolled =enrolled+1 
-    console.log('selectecd',id);
-    console.log('main',mainClassId);
+    const updatedSeats = seats - 1;
+    const updatedEnrolled = enrolled + 1
+    console.log('selectecd', id);
+    console.log('main', mainClassId);
     const { user } = useAuth()
     const [error, setError] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -75,10 +77,18 @@ const CheckoutForm = ({ amount, id, mainClassId }) => {
             },
         );
         if (paymentIntent) {
+            //remove selected class
             axiosSecure.delete(`/classes/remove-selected/${id}`)
-            .then(res=>console.log(res.data))
-            axiosSecure.patch(`/classes/add-enrollcount/${mainClassId}`,{updatedSeats,updatedEnrolled})
-            .then(res=>console.log(res.data))
+                .then(res => console.log(res.data))
+            //add enolled count and update available seat numbers.
+            axiosSecure.patch(`/classes/add-enrollcount/${mainClassId}`, { updatedSeats, updatedEnrolled })
+                .then(res => console.log(res.data))
+            //add class to enrolled
+            const paymentDate = new Date()
+            const paidClass = {instructor_name, class_name: class_name, paymentDate, mainClassId, email: user.email, paymentID: paymentIntent.id }
+            console.log(paidClass);
+            axiosSecure.post('/classes/enrolled', paidClass)
+                .then(res => console.log(res.data))
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -87,6 +97,7 @@ const CheckoutForm = ({ amount, id, mainClassId }) => {
                 timer: 2500
             })
             console.log(paymentIntent);
+            navigate('/dashboard/student/enrolled-classes')
         }
 
         if (confirmPaymentError)
@@ -113,7 +124,7 @@ const CheckoutForm = ({ amount, id, mainClassId }) => {
                         },
                     }}
                 />
-                <button type="submit" disabled={isLoading || !stripe || !elements}>
+                <button className="mt-5 border-2 border-green-500 hover:bg-green-500 px-5 font-semibold py-1 hover:text-white rounded" type="submit" disabled={isLoading || !stripe || !elements}>
                     Pay
                 </button>
                 <h1 className="text-red-400 text-xl mt-5">{error}</h1>
