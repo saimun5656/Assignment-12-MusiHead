@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const SelectedClasses = () => {
     const { user, loading } = useAuth()
     const axiosSecure = useAxiosSecure()
-    const { data: classes } = useQuery({
+    const { data: classes , refetch} = useQuery({
         queryKey: ['classes', user?.eamil],
         enabled: !loading && !!user?.email && !!localStorage.getItem("access-token"),
         queryFn: async () => {
@@ -14,7 +14,13 @@ const SelectedClasses = () => {
             return res.data
         }
     })
-    console.log(classes);
+   const removeSelected = (id)=>{
+    axiosSecure.delete(`/classes/remove-selected/${id}`)
+            .then(res =>{ 
+                console.log(res.data)
+                refetch()
+            })
+   }
     return (
         <div>
             <div className="overflow-x-auto w-full">
@@ -39,7 +45,7 @@ const SelectedClasses = () => {
                                 <td>{cls.instructor_name}</td>
                                 <td >${cls.price}</td>
                                 <td className="text-2xl"><Link to={`/dashboard/student/payment/${cls._id}`}><FaMoneyCheckAlt /></Link></td>
-                                <td className="text-2xl"><FaTrashAlt /></td>
+                                <td className="text-2xl"><button onClick={()=>{removeSelected(cls._id)}}><FaTrashAlt /></button></td>
                             </tr>)
                         }
                     </tbody>

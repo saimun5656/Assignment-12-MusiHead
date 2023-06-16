@@ -79,13 +79,13 @@ const CheckoutForm = ({ amount, id, mainClassId, class_name, instructor_name }) 
         if (paymentIntent) {
             //remove selected class
             axiosSecure.delete(`/classes/remove-selected/${id}`)
-                .then(res => console.log(res.data))
+            .then(res => console.log(res.data))
             //add enolled count and update available seat numbers.
             axiosSecure.patch(`/classes/add-enrollcount/${mainClassId}`, { updatedSeats, updatedEnrolled })
                 .then(res => console.log(res.data))
             //add class to enrolled
             const paymentDate = new Date()
-            const paidClass = {instructor_name, class_name: class_name, paymentDate, mainClassId, email: user.email, paymentID: paymentIntent.id }
+            const paidClass = { instructor_name, class_name: class_name, paymentDate, mainClassId, email: user.email, paymentID: paymentIntent.id }
             console.log(paidClass);
             axiosSecure.post('/classes/enrolled', paidClass)
                 .then(res => console.log(res.data))

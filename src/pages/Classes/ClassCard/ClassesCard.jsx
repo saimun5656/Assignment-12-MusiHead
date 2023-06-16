@@ -10,10 +10,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 const ClassesCard = ({ cls }) => {
     const navigate = useNavigate()
     const { pathname } = useLocation()
-    console.log(pathname);
     const [isAdmin] = useAdmin()
     const [isInstructor] = useInstructor()
-    console.log(isAdmin || isInstructor);
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const selecetedClass = { instructor_name: cls.instructor_name, class_id: cls._id, class_name: cls.class_name, price: cls.price, email: user?.email }

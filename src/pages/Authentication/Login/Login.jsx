@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../SocialLogin/SocialLogin";
 const Login = () => {
     const [error,setError]= useState()
     const {emailLogin}= useAuth()
@@ -59,7 +60,7 @@ const Login = () => {
           <input className=" text-slate-200 font-semibold bg-[#39d075] px-6 py-1 rounded" type="submit" value={'LOG IN'} />
         </form>
         <div className="mt-5">
-        <span>Continue with </span><button>G</button>
+        <SocialLogin from={from}></SocialLogin>
         </div>
       </div>
           </div>

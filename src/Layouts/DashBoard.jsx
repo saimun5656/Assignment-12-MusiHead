@@ -39,7 +39,7 @@ const DashBoard = () => {
                         isAdmin ? <>
                             <li><Link to='/dashboard/admin/manage-classes'><FaListAlt className="text-3xl me-3" /> Manage Classes</Link></li>
                             <li><Link to='/dashboard/admin/manage-users'><MdManageAccounts className="text-3xl me-3" /> Manage Users</Link></li>
-                        </> : ''
+               </> : ''
                     }
                     {
                         isStudent?<>

@@ -5,7 +5,7 @@ const useAxiosSecure = () => {
 const navigate = useNavigate();
 const{logOut}= useAuth()
 const axiosSecure = axios.create({
-  baseURL: 'https://assignment-12-summer-camp-server-ruddy.vercel.app'
+  baseURL: 'https://assignment-12-summer-camp-server-saimun5656.vercel.app'
 });
 
 axiosSecure.interceptors.request.use(

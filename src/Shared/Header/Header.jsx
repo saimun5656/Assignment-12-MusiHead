@@ -7,7 +7,6 @@ import { RiDashboardFill } from "react-icons/ri";
 import useIsStudent from "../../Hooks/useIsStudent";
 const Header = () => {
   const { user, logOut ,loading} = useAuth();
-  console.log(user);
   const [isInstructor] = useInstructor();
   const [isAdmin] = useAdmin();
   const [isStudent] = useIsStudent();
