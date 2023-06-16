@@ -25,7 +25,7 @@ const Register = () => {
           updateProfile(res.user,{displayName:data.name,photoURL:imgurl})
           .then()
           const user ={name:data.name,email:data.email,image:imgurl,role:'student'}
-          axios.post('http://localhost:5000/users',user)
+          axios.post('https://assignment-12-summer-camp-server-ruddy.vercel.app/users',user)
           .then(res=>{
             if(res.data.insertedId){
               Swal.fire({
