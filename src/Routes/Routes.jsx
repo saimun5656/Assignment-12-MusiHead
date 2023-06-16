@@ -15,6 +15,7 @@ import SelectedClasses from "../pages/DashBoard/Student/SelectedClasses/Selected
 import Payment from "../pages/DashBoard/Student/Payment/Payment";
 import AdminRoutes from "./AdminRoutes";
 import EnrolledClasses from "../pages/DashBoard/Student/EnrolledClasses/EnrolledClasses";
+import PaymentHistory from "../pages/DashBoard/Student/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
             {
                 path:'student/payment/:id',
                 element:<Payment></Payment>
+            },
+            {
+                path:'student/payment-history',
+                element:<PaymentHistory></PaymentHistory>
             },
         ]
     }

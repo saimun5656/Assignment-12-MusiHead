@@ -3,7 +3,7 @@ import { AiFillFolderAdd, AiFillDatabase } from "react-icons/ai";
 import { BiSelectMultiple } from "react-icons/bi";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { MdManageAccounts } from "react-icons/md";
-import { FaListAlt } from "react-icons/fa";
+import { FaListAlt ,FaHistory } from "react-icons/fa";
 import useInstructor from "../Hooks/useInstructor";
 import useAdmin from "../Hooks/useAdmin";
 import useIsStudent from "../Hooks/useIsStudent";
@@ -45,6 +45,7 @@ const DashBoard = () => {
                         isStudent?<>
                          <li><Link to='/dashboard/student/selected-classes'><BiSelectMultiple className="text-3xl me-3" /> Selected Classes</Link></li>
                             <li><Link to='/dashboard/student/enrolled-classes'><AiOutlineFileDone className="text-3xl me-3" />Enrolled Classes</Link></li>
+                            <li><Link to='/dashboard/student/payment-history'><FaHistory className="text-2xl me-4" />Payment History</Link></li>
                         </>:''
                     }
                 </ul>

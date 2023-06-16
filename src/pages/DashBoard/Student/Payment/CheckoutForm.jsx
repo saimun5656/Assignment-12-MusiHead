@@ -85,7 +85,7 @@ const CheckoutForm = ({ amount, id, mainClassId, class_name, instructor_name }) 
                 .then(res => console.log(res.data))
             //add class to enrolled
             const paymentDate = new Date()
-            const paidClass = { instructor_name, class_name: class_name, paymentDate, mainClassId, email: user.email, paymentID: paymentIntent.id }
+            const paidClass = {amount, instructor_name, class_name: class_name, paymentDate, mainClassId, email: user.email, paymentID: paymentIntent.id }
             console.log(paidClass);
             axiosSecure.post('/classes/enrolled', paidClass)
                 .then(res => console.log(res.data))

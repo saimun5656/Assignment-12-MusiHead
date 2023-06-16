@@ -17,7 +17,7 @@ const Header = () => {
   </>
   if (user||!loading) {
     return (
-      <div>
+      <div data-theme="light">
         <div className="w-11/12 mx-auto max-w-screen-xl flex justify-between my-2">
           <div>
             {
