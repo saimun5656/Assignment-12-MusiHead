@@ -6,7 +6,7 @@ const Ourfeatures = () => {
             <div className="min-h-[500px] bg-[#13181b] bg-opacity-90 flex flex-col justify-center items-center p-4 rounded-md">
                 <h1 className="text-green-400 text-4xl font-medium"><Typewriter
                     words={['OUR FEATURES']}
-                    loop={1}
+                    loop={6}
                     cursor
                     cursorStyle='_'
                     typeSpeed={70}
@@ -16,7 +16,7 @@ const Ourfeatures = () => {
                 <p className="text-gray-200 mt-5">
                 <Typewriter
                     words={['Discover  a   World', 'of  Musical  Inspiration', 'with Interactive  Lessons,', 'Practice Tools' , 'and Personalized  Feedback']}
-                    loop={1}
+                    loop={3}
                     cursor
                     cursorStyle='_'
                     typeSpeed={70}

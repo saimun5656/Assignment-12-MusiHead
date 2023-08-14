@@ -62,7 +62,8 @@ const Login = () => {
         <div className="mt-5">
         <SocialLogin from={from}></SocialLogin>
         </div>
-      </div>
+        <input type="radio" name="" id="" />
+        <input type="checkbox" name="" id="" />      </div>
           </div>
         </div>
     );
